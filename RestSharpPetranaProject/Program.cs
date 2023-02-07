@@ -8,7 +8,9 @@ namespace RestSharpPetranaProject
         static void Main(string[] args)
         {
             RestClient client = new RestClient("https://api.github.com");
-            RestRequest request = new RestRequest("/repos/PetranaKoleva/postman/issues/1", Method.Get);
+            RestRequest request = new RestRequest("/repos/{user}/{repoName}/issues/1", Method.Get);
+            request.AddUrlSegment("user", "PetranaKoleva");
+            request.AddUrlSegment("repoName", "postman");
 
             var response = client.Execute(request);
             Console.WriteLine("STATUS CODE; " + response.StatusCode);
